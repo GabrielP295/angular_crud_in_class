@@ -1,1 +1,10 @@
-<p>create-users works!</p>
+<p>First Name:</p>
+<input [(ngModel)]="firstName" placeholder="Please enter first name"/>
+<br/>
+<p>Last Name:</p>
+<input [(ngModel)]="lastName" placeholder="Please enter last name"/>
+<br/>
+<p>Email:</p>
+<input [(ngModel)]="email" placeholder="Please enter email"/>
+<br/>
+<button (click)="addUser()"> Add User </button>
