@@ -1,0 +1,14 @@
+.user-container {
+    display: flex;
+    width: 25%;
+    gap: 10px;
+}
+
+.user-button {
+    background-color: red;
+    color: white;
+    border: none;
+    height: 25%;
+    align-self: center;
+    cursor: pointer;
+}

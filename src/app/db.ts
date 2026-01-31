@@ -32,4 +32,17 @@ export class Db {
     console.log('Current Users in DB:', this.users);
     return true;
   }
+
+  get readAllUser(): User[] {
+    return Object.values(this.users);
+  }
+
+  deleteUser(email: string): boolean {
+    if (!this.users[email]) {
+      console.error('No user found with this email:', email);
+      return false;
+    }
+    delete this.users[email];
+    return true;
+  }
 }

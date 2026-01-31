@@ -5,7 +5,7 @@ import { ReadUsers } from './read-users/read-users';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'users',
+        redirectTo: 'create-users',
         pathMatch: 'full',
     },
     {
