@@ -5,7 +5,7 @@
 @for(user of readAllUsers(); track user) {
     <div class="user-container">
         <p>{{ user.email }}</p> 
-        <button class="user-button" (click)="deleteUser(user.email)">Delete User</button>
+        <button class="delete-button" (click)="deleteUser(user.email)">Delete User</button>
     </div>
 }@empty {
     <p>No users found. Please create a user 

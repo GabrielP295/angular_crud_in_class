@@ -1,4 +1,4 @@
-<p>First Name:</p>
+<!-- <p>First Name:</p>
 <input [(ngModel)]="firstName" placeholder="Please enter first name"/>
 <br/>
 <p>Last Name:</p>
@@ -9,4 +9,26 @@
 <br/>
 <button (click)="addUser()"> Add User </button>
 <br/>
-<a routerLink="/read-users"> View All Users </a>
+<a routerLink="/read-users"> View All Users </a> -->
+
+<form [formGroup]="formGroup">
+    <label>
+        Enter first name:
+        <input formControlName="firstName">
+    </label>
+    <br/>
+    <label>
+        Enter last name:
+        <input formControlName="lastName">
+    </label>
+    <br/>
+    <label>
+        Enter email:
+        <input formControlName="email">
+    </label>
+    <br/>
+
+    <button (click)="addUser()">Add User</button>
+</form>
+<hr/>
+<a routerLink="/read-users">View All Users</a>
