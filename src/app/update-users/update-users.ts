@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Db } from '../db';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
@@ -12,19 +12,15 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 })
 export class UpdateUsers {
   route = inject(ActivatedRoute);
+  router = inject(Router)
   dbService: Db = inject(Db);
 
   formGroup = new FormGroup({
-    firstName: new FormControl('Gabriel', [Validators.email]),
-    lastName: new FormControl('Paniagua'),
-    email: new FormControl('gabrielpan295@gmail.com'),
+    firstName: new FormControl(),
+    lastName: new FormControl(),
+    email: new FormControl(),
   })
 
-  firstName = '';
-  lastName = '';
-  email = '';
-
-  //ask why this method has a constructor
   constructor() {
     const email = this.route.snapshot.paramMap.get('email');
 
@@ -34,14 +30,20 @@ export class UpdateUsers {
 
     if (!user) return;
 
-    this.firstName = user.firstName;
-    this.lastName = user.lastName;
-    this.email = user.email;
+    this.formGroup.setValue({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    });
   }
   
-  //ask why this method takes in 3 inputs instead of user object, and how to deal with
-  //Partial Omit object being passed into method
   updateUser() {
-    this.dbService.updateUser(this.email, this.firstName, this.lastName);
+    const {firstName, lastName, email} = this.formGroup.value;
+
+    if(!email) return;
+
+    const updatedUser = this.dbService.updateUser(email, {firstName, lastName});
+
+    if (updatedUser) this.router.navigate(['/read-users']);
   }
 }

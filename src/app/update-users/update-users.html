@@ -1,12 +1,10 @@
-<a routerLink="/read">View All Users</a><br/>
+<a routerLink="/read-users">View All Users</a><br/>
 <form [formGroup]="formGroup">
-    <input placeholder="Enter your email" formControlName="email">
-    <br/>
     <input placeholder="Enter your first name" formControlName="firstName">
     <br/>
     <input placeholder="Enter your last name" formControlName="lastName">
     <br/>
-    <button (click)="updateUser()">Submit</button>
+    <button type="button" (click)="updateUser()">Submit</button>
 </form>
 
 

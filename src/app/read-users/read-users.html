@@ -4,8 +4,11 @@
 <br/>
 @for(user of readAllUsers(); track user) {
     <div class="user-container">
-        <p>{{ user.email }}</p> 
-        <button class="delete-button" (click)="deleteUser(user.email)">Delete User</button>
+        <p>Email: {{ user.email }}</p> 
+        <p>First Name: {{ user.firstName }}</p> 
+        <p>Last Name: {{ user.lastName }}</p> 
+        <button type="button" class="delete-button" (click)="deleteUser(user.email)">Delete User</button>
+        <button type="button" class="delete-button" [routerLink]="['/update-users', user.email]">Edit User</button>
     </div>
 }@empty {
     <p>No users found. Please create a user 

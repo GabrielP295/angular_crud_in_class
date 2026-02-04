@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface User {
+interface User {
   firstName: string,
   lastName: string,
   email: string,
@@ -50,17 +50,19 @@ export class Db {
     return true;
   }
 
-  updateUser(email: string, firstName: string, lastName: string) {
+  updateUser(email: string, updateParams: Partial<Omit<User, 'email'>>) {
     if (!this.users[email]) {
       console.error('No user found with this email: ', email);
       return;
     }
-    this.users[email] = {
-      email,
-      firstName,
-      lastName,
+
+    const currentUser: User = this.users[email];
+    const updatedUser: User = {
+      ...currentUser,
+      ...updateParams,
     }
 
-    return this.users[email];
+    this.users[email] = updatedUser;
+    return updatedUser;
   }
 }
