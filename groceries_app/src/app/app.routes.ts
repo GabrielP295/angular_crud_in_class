@@ -20,10 +20,10 @@ export const routes: Routes = [
     },
     {
         path: 'edit-groceries/:id',
-        component: CreateGroceries,
+        component: UpdateGroceries,
     },
     {
         path: 'delete-groceries/:id',
-        component: CreateGroceries,
+        component: DeleteGroceries,
     },
 ];
