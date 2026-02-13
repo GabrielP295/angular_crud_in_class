@@ -1,0 +1,26 @@
+.grocery-description {
+    display: inline;
+    margin-right: 2.5vw;
+}
+
+.grocery-description::before {
+        content: "\2022";
+        color: #333;
+        margin-right: 1vw;
+        width: 1vw;
+    }
+
+.grocery-container {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.edit-button {
+    background-color: rgb(115, 236, 121);
+}
+
+.delete-button {
+    background-color: rgb(223, 61, 61);
+}

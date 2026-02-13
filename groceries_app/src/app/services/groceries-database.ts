@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Groceries, GroceriesCollection } from '../model/Groceries'
+import { Groceries, GroceriesCollection } from '../model/Groceries';
 
 type updateParams = Partial<Omit<Groceries, 'id'>>;
 
@@ -9,16 +9,16 @@ type updateParams = Partial<Omit<Groceries, 'id'>>;
 export class GroceriesDatabase {
   private groceries: GroceriesCollection = [];
 
-  createGrocery(grocery: Groceries): Groceries | null {
+  createGrocery(item: string, price: number, store: string): Groceries {
     const groceryObject = {
       id: crypto.randomUUID(),
-      item: grocery.item,
-      price: grocery.price,
-      store: grocery.store,
-    }
+      item: item,
+      price: price,
+      store: store,
+    };
 
     this.groceries.push(groceryObject);
-    console.log(`The grocery ${grocery.item} was added.`);
+    console.log(`The grocery ${groceryObject.item} was added.`);
     return groceryObject;
   }
 
@@ -35,13 +35,36 @@ export class GroceriesDatabase {
     return null;
   }
 
-  updateGrocery(groceryId: string, updateParams: Partial<Omit<Groceries, 'id'>>) {
+  readIndexById(groceryId: string) {
+    return this.groceries.indexOf(this.readGroceryById(groceryId)!);
+  }
+
+  updateGrocery(groceryId: string, updateParams: updateParams) {
     const groceryToUpdate = this.readGroceryById(groceryId);
 
     if (!groceryToUpdate) {
       return;
     }
-
     
+    const updatedGrocery = {
+      ...groceryToUpdate,
+      ...updateParams,
+    };
+    console.log(updatedGrocery);
+    const indexOfGrocery = this.readIndexById(groceryId);
+    this.groceries[indexOfGrocery] = updatedGrocery;
+
+    return updatedGrocery;
+  }
+
+  deleteGrocery(groceryId: string) {
+    const groceryToDelete = this.readGroceryById(groceryId);
+    if (!groceryToDelete) {
+      console.error('No grocery with this id found');
+      return;
+    }
+
+    this.groceries.splice(this.readIndexById(groceryId), 1);
+    return groceryToDelete;
   }
 }

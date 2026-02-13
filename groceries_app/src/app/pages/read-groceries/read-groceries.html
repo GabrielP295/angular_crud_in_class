@@ -1,1 +1,11 @@
-<p>read-groceries works!</p>
+@for (grocery of readAllGroceries(); track grocery) {
+  <div class="grocery-container">
+    <p class="grocery-description">{{ grocery.item }}: ${{ grocery.price }} @ {{ grocery.store }}</p>
+    <button [routerLink]="['/edit-groceries', grocery.id]" class="edit-button">Edit Item</button>
+    <button [routerLink]="['/delete-groceries', grocery.id]" class="delete-button">Delete Item</button>
+  </div>
+} @empty {
+  <p>Your groceries list is empty. Add one <a routerLink="/create-groceries">here</a>!</p>
+}
+
+<a class="create-groceries" routerLink="/create-groceries">Add a grocery item</a>
