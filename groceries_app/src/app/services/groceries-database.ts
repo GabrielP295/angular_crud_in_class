@@ -35,6 +35,12 @@ export class GroceriesDatabase {
     return null;
   }
 
+  readIndexById(groceryId: string) {
+    return this.groceries.indexOf(
+      this.readGroceryById(groceryId)!
+    );
+  }
+
   updateGrocery(groceryId: string, updateParams: Partial<Omit<Groceries, 'id'>>) {
     const groceryToUpdate = this.readGroceryById(groceryId);
 
@@ -42,6 +48,25 @@ export class GroceriesDatabase {
       return;
     }
 
-    
+    const updatedGrocery = {
+      ...groceryToUpdate,
+      updateParams,
+    }
+
+    const indexOfGrocery = this.readIndexById(groceryId);
+    this.groceries[indexOfGrocery] = updatedGrocery;
+
+    return updatedGrocery;
+  }
+
+  deleteGrocery(groceryId: string) {
+    const groceryToDelete = this.readGroceryById(groceryId);
+    if (!groceryToDelete) {
+      console.error("No grocery with this id found");
+      return;
+    }
+
+    this.groceries.splice(this.readIndexById(groceryId), 1);
+    return groceryToDelete;
   }
 }
