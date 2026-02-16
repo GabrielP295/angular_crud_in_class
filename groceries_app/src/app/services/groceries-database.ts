@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Groceries, GroceriesCollection } from '../model/Groceries'
+import { Groceries, GroceriesCollection } from '../model/Groceries';
 
 type updateParams = Partial<Omit<Groceries, 'id'>>;
 
@@ -15,7 +15,7 @@ export class GroceriesDatabase {
       item: grocery.item,
       price: grocery.price,
       store: grocery.store,
-    }
+    };
 
     this.groceries.push(groceryObject);
     console.log(`The grocery ${grocery.item} was added.`);
@@ -36,9 +36,7 @@ export class GroceriesDatabase {
   }
 
   readIndexById(groceryId: string) {
-    return this.groceries.indexOf(
-      this.readGroceryById(groceryId)!
-    );
+    return this.groceries.indexOf(this.readGroceryById(groceryId)!);
   }
 
   updateGrocery(groceryId: string, updateParams: Partial<Omit<Groceries, 'id'>>) {
@@ -51,7 +49,7 @@ export class GroceriesDatabase {
     const updatedGrocery = {
       ...groceryToUpdate,
       updateParams,
-    }
+    };
 
     const indexOfGrocery = this.readIndexById(groceryId);
     this.groceries[indexOfGrocery] = updatedGrocery;
@@ -62,7 +60,7 @@ export class GroceriesDatabase {
   deleteGrocery(groceryId: string) {
     const groceryToDelete = this.readGroceryById(groceryId);
     if (!groceryToDelete) {
-      console.error("No grocery with this id found");
+      console.error('No grocery with this id found');
       return;
     }
 
