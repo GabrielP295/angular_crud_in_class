@@ -39,7 +39,7 @@ export class GroceriesDatabase {
     return this.groceries.indexOf(this.readGroceryById(groceryId)!);
   }
 
-  updateGrocery(groceryId: string, updateParams: Partial<Omit<Groceries, 'id'>>) {
+  updateGrocery(groceryId: string, updateParams: updateParams) {
     const groceryToUpdate = this.readGroceryById(groceryId);
 
     if (!groceryToUpdate) {

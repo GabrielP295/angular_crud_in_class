@@ -34,9 +34,11 @@ export class UpdateGroceries implements OnInit {
   }
 
   editGrocery() {
-    const {item, price, store} = this.formGroup.value;
+    let {item, price, store} = this.formGroup.value;
 
-    const updatedUser = this.groceryService.updateGrocery(this.id!, {item, price, store})
+    price = Number(price);
+
+    const updatedUser = this.groceryService.updateGrocery(this.id!, {item, price, store});
 
     if (updatedUser) this.router.navigate(['/read-groceries']);
   }
