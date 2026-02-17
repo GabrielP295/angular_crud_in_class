@@ -1,3 +1,19 @@
-<input id="textInput" [(ngModel)]="groceryItem" />
-<button (click)="createGrocery()">Submit</button>
-<p id="p"></p>
+<form [formGroup]="formGroup">
+  <label>
+    <p>Grocery Item:</p>
+    <input formControlName="groceryItem" />
+  </label>
+  <label>
+    <p>Grocery Price:</p>
+    <input formControlName="groceryPrice" />
+  </label>
+  <label>
+    <p>Grocery Store:</p>
+    <input formControlName="groceryStore" />
+  </label>
+  <hr />
+  <button (click)="createGrocery()">Submit</button>
+</form>
+<p>{{ groceryConfirmation }}</p>
+
+<a routerLink="/read-groceries">View all groceries</a>

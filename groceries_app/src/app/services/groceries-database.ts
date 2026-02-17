@@ -9,7 +9,7 @@ type updateParams = Partial<Omit<Groceries, 'id'>>;
 export class GroceriesDatabase {
   private groceries: GroceriesCollection = [];
 
-  createGrocery(item: string, price: number, store: string): Groceries | null {
+  createGrocery(item: string, price: number, store: string): Groceries {
     const groceryObject = {
       id: crypto.randomUUID(),
       item: item,
