@@ -12,17 +12,19 @@ export class CreateGroceries {
   groceryService = inject(GroceriesDatabase);
 
   groceryItem = '';
-  groceryPrice = 7.50;
-  groceryStore = "Tony's Fresh Market";
+  groceryPrice = '';
+  groceryStore = '';
 
   createGrocery() {
-    const newGrocery = this.groceryService.createGrocery({
-      item: this.groceryItem, 
-      price: this.groceryPrice, 
-      store: this.groceryStore
-    })
-    this.groceryItem = newGrocery!.item;
-    this.groceryPrice = newGrocery!.price;
-    this.groceryStore = newGrocery!.store;
+    const newGrocery = this.groceryService.createGrocery(
+      this.groceryItem,
+      Number(this.groceryPrice),
+      this.groceryStore,
+    );
+    const p = document.getElementById('p');
+    p!.textContent += ' ' + this.groceryItem;
+    this.groceryItem = '';
+    this.groceryPrice = '';
+    this.groceryStore = '';
   }
 }
