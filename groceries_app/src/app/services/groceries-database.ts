@@ -45,12 +45,12 @@ export class GroceriesDatabase {
     if (!groceryToUpdate) {
       return;
     }
-
+    
     const updatedGrocery = {
       ...groceryToUpdate,
-      updateParams,
+      ...updateParams,
     };
-
+    console.log(updatedGrocery);
     const indexOfGrocery = this.readIndexById(groceryId);
     this.groceries[indexOfGrocery] = updatedGrocery;
 

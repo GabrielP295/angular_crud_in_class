@@ -1,1 +1,19 @@
-<p>update-groceries works!</p>
+<h2>Edit a grocery: </h2>
+<form [formGroup]="formGroup">
+  <label>
+    <p>Grocery Item:</p>
+    <input formControlName="item" />
+  </label>
+  <label>
+    <p>Grocery Price:</p>
+    <input formControlName="price" />
+  </label>
+  <label>
+    <p>Grocery Store:</p>
+    <input formControlName="store" />
+  </label>
+  <hr />
+  <button (click)="editGrocery()">Submit</button>
+</form>
+
+<a routerLink="/read-groceries">View all groceries</a>
